@@ -1,0 +1,45 @@
+CREATE ROLE service_books WITH LOGIN PASSWORD 'srv-bks';
+CREATE ROLE service_prices WITH LOGIN PASSWORD 'srv-prcs';
+CREATE ROLE service_users WITH LOGIN PASSWORD 'srv-usrs';
+
+CREATE SCHEMA service_books AUTHORIZATION service_books;
+CREATE SCHEMA service_prices AUTHORIZATION service_prices;
+CREATE SCHEMA service_users AUTHORIZATION service_users;
+
+
+CREATE TABLE EMPRESA (
+ ID BIGSERIAL  primary key NOT NULL,
+ NOME varchar(80) NOT NULL,
+ CONTA varchar(80) NOT NULL,
+ USERNAME varchar(80) NOT NULL,
+ SENHA varchar(80) NOT NULL, -- precipitation
+ CAIXA varchar(264) NOT NULL
+);
+
+CREATE TABLE PERFIL (
+ ID BIGSERIAL primary key NOT NULL,
+ NOME varchar(80) NOT NULL
+);
+
+CREATE TABLE PERMISSAO
+(
+ID BIGSERIAL primary key NOT NULL,
+NOME varchar(80) NOT NULL,
+CODIGO varchar(80) NOT NULL,
+ACTION varchar(80) NOT NULL
+);
+
+
+CREATE TABLE USUARIO
+(
+ID BIGSERIAL primary key NOT NULL,
+NOME varchar(80) NOT NULL,
+USERNAME varchar(80) NOT NULL,
+SENHA varchar(80) NOT NULL,
+SETOR varchar(80) NOT NULL,
+CARGO varchar(80) NOT NULL,
+DOMINIO varchar(80) NOT NULL,
+TIPO_AUTENTICACAO varchar(80) NOT NULL,
+ID_EMPRESA bigint NOT NULL,
+ID_PERFIL bigint NOT NULL
+);
